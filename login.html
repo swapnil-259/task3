@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Registration page</title>
+  <style>
+    body,
+    html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ede2ed;
+      
+    }
+
+  .form-box {
+    max-width: 400px;
+    margin-left: 60px;
+    
+
+  }
+
+  .form-box label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: rgb(76, 18, 18);
+  }
+
+  .form-box input[type="text"],
+  .form-box input[type="password"],
+  .form-box select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+
+    border: 2px solid #d37878;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+
+  .form-box input[type="submit"] {
+    background-color: #4c0f0f;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .form-box input[type="submit"]:hover {
+    background-color: #3c0813;
+  }
+</style>
+</head>
+
+    <p style="display: flex; align-items: center; justify-content: center; font-size: 30px; margin-top: 80px; font-weight: bold; color: #3c0813;">LOGIN PAGE</p>
+    <div class="form-box" style="margin-top: 150px; width: 350px; margin-left: 750px;">
+
+        <form action="user.php" method="post">
+         
+         <label for="email" >Enter your Email Address</label>
+          <input type="text" id="email" name="email" required >
+        <label for="pass">Enter your Password</label>  
+        <input type="password" id="pass" name="pass" required>
+        
+        
+          <input type="submit"  >
+        </form>
+      </div>
+    
+ </form >
+
+ </body>
+
