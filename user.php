@@ -19,11 +19,16 @@ echo "Connected successfully<br>";
 $email = $_POST['email'];
 $pass = $_POST['pass'];
 
-$checkEmailQuery = "SELECT COUNT(*) as count FROM `details` WHERE email = '$email'";
+$checkEmailQuery = "SELECT COUNT(*) as count, status  FROM `details` WHERE email = '$email'";
 $EmailResult = mysqli_query($conn, $checkEmailQuery);
 $checkEmailData = mysqli_fetch_assoc($EmailResult);
 
 if ($checkEmailData['count'] >0) {
+  $status = $checkEmailData['status'];
+
+  if ($status === 'admin') {
+      setcookie('role', 'admin', time() + (86400 * 30), '/'); 
+  }
   
 
   if ($email === 'swapnilagrawal259@gmail.com'){
