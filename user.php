@@ -24,10 +24,10 @@ $EmailResult = mysqli_query($conn, $checkEmailQuery);
 $checkEmailData = mysqli_fetch_assoc($EmailResult);
 
 if ($checkEmailData['count'] >0) {
-  $status = $checkstatus['status'];
+  
 
-  if ($status === 'admin'){
-    setcookie('status', 'admin' );
+  if ($email === 'swapnilagrawal259@gmail.com'){
+    setcookie('email', 'swapnilagrawal259@gmail.com' );
     $alldata = "SELECT name, gender, address, email, phone, stay FROM `details`"; 
     $checkdata = mysqli_query($conn, $alldata);
    
