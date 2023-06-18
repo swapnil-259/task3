@@ -19,20 +19,16 @@ echo "Connected successfully<br>";
 $email = $_POST['email'];
 $pass = $_POST['pass'];
 
-$checkEmailQuery = "SELECT COUNT(*) as count, status  FROM `details` WHERE email = '$email'";
+$checkEmailQuery = "SELECT COUNT(*) as count, status  FROM `details` WHERE email = '$email' AND pass ='$pass'";
 $EmailResult = mysqli_query($conn, $checkEmailQuery);
 $checkEmailData = mysqli_fetch_assoc($EmailResult);
 
 if ($checkEmailData['count'] >0) {
   $status = $checkEmailData['status'];
-
-  if ($status === 'admin') {
+ if ($status === 'admin') {
       setcookie('role', 'admin', time() + (86400 * 30), '/'); 
-  }
   
-
-  if ($email === 'swapnilagrawal259@gmail.com'){
-    setcookie('email', 'swapnilagrawal259@gmail.com' );
+  
     $alldata = "SELECT name, gender, address, email, phone, stay FROM `details`"; 
     $checkdata = mysqli_query($conn, $alldata);
    
@@ -62,7 +58,7 @@ if ($checkEmailData['count'] >0) {
           } else {
           echo "invalid password";
    } }
-} else {
+   } else {
     
     header("Location: homepage.html");
     exit;
