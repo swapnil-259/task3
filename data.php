@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 
 $servername = 'localhost';
 $username = 'swapnil';
@@ -22,6 +26,7 @@ $email = $_POST['email'];
 $phone = $_POST['phone'];
 $stay=$_POST['stay'];
 $pass=$_POST['pass'];
+$hashedpass = password_hash($pass, PASSWORD_DEFAULT);
 $confirmpass=$_POST['confirmpass'];
 $checkEmailQuery = "SELECT COUNT(*) as count FROM `details` WHERE email = '$email'";
 $EmailResult = mysqli_query($conn, $checkEmailQuery);
@@ -33,14 +38,17 @@ if ($checkEmailData['count'] > 0) {
 } elseif(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/',$pass)){
    
   echo "Password should include at least one upper case letter, one number, and one special character";
+} elseif(strlen($phone)!=10){
+  echo "phone number should be 10 digit";
 } elseif ($confirmpass!==$pass) {
    echo "password should be same";
-} else { 
+}  else { 
       $sql = "INSERT INTO `details` (name, gender, address, email, phone, stay,pass)
-     VALUES ('$name','$gender','$address','$email','$phone','$stay','$pass')";
-    
+     VALUES ('$name','$gender','$address','$email','$phone','$stay','$hashedpass')";
+   
     if (mysqli_query($conn, $sql)) {
       echo "New record has been added successfully !<br>";
+      
       session_start();
       $_SESSION['user'] = true;
       $userdetails = "SELECT name , gender, address, email, phone, stay FROM `details` WHERE email = '$email'";
@@ -61,19 +69,6 @@ if ($checkEmailData['count'] > 0) {
     }
   
 
-
-
-  //  $userdetails = "SELECT name , gender, address, email, phone, stay FROM `details` WHERE email = '$email'";
-  //  $userresult= mysqli_query($conn, $userdetails);
-  //  $checkdetails = mysqli_fetch_assoc($userresult);
-
-  //  echo "USER-DETAILS<br>";
-  //  echo "Name => " . $checkdetails['name'] . "<br>";
-  //  echo "Gender => " . $checkdetails['gender'] . "<br>";
-  //  echo "Address => " . $checkdetails['address'] . "<br>";
-  //  echo "Email => " . $checkdetails['email'] . "<br>";
-  //  echo "Phone => " . $checkdetails['phone'] . "<br>";
-  //  echo "Stay => " . $checkdetails['stay'] . "<br>";
 
 
 
